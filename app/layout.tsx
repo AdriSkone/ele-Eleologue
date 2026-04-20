@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   title: "Ateliers Caféologie — Cours et ateliers café de spécialité",
   description:
     "Découvrez nos ateliers caféologie : cours café, barista, cupping. Réservez votre expérience café de spécialité.",
+  icons: {
+    icon: "/cropped-favicon.webp",
+    apple: "/cropped-favicon.webp",
+  },
 };
 
 export default function RootLayout({
