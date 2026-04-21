@@ -3,11 +3,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
+import { usePathname } from "next/navigation";
 
 const NAV_HEIGHT = 80;
 
+const navLinks = [
+  { label: "Ateliers", id: "ateliers" },
+  { label: "Expériences", id: "experiences" },
+  { label: "Témoignages", id: "temoignages" },
+  { label: "Contact", id: "contact" },
+];
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -34,7 +44,7 @@ export default function Navbar() {
       }`}
     >
       {/* Logo */}
-      <Link href="/" onClick={scrollTo("hero")}>
+      <Link href="/" onClick={isHome ? scrollTo("hero") : undefined}>
         <Image
           src="/ele_header.webp"
           alt="Ateliers Caféologie"
@@ -46,37 +56,19 @@ export default function Navbar() {
 
       {/* Nav links */}
       <nav className="hidden md:flex items-center gap-8">
+        {navLinks.map(({ label, id }) => (
+          <a
+            key={id}
+            href={isHome ? `#${id}` : `/#${id}`}
+            onClick={isHome ? scrollTo(id) : undefined}
+            className="font-sans text-[#F5E6D3]/80 text-xs tracking-[0.15em] hover:text-[#F5E6D3] transition-colors duration-200"
+          >
+            {label}
+          </a>
+        ))}
         <a
-          href="#ateliers"
-          onClick={scrollTo("ateliers")}
-          className="font-sans text-[#F5E6D3]/80 text-xs tracking-[0.15em] hover:text-[#F5E6D3] transition-colors duration-200"
-        >
-          Ateliers
-        </a>
-        <a
-          href="#experiences"
-          onClick={scrollTo("experiences")}
-          className="font-sans text-[#F5E6D3]/80 text-xs tracking-[0.15em] hover:text-[#F5E6D3] transition-colors duration-200"
-        >
-          Expériences
-        </a>
-        <a
-          href="#temoignages"
-          onClick={scrollTo("temoignages")}
-          className="font-sans text-[#F5E6D3]/80 text-xs tracking-[0.15em] hover:text-[#F5E6D3] transition-colors duration-200"
-        >
-          Témoignages
-        </a>
-        <a
-          href="#contact"
-          onClick={scrollTo("contact")}
-          className="font-sans text-[#F5E6D3]/80 text-xs tracking-[0.15em] hover:text-[#F5E6D3] transition-colors duration-200"
-        >
-          Contact
-        </a>
-        <a
-          href="#ateliers"
-          onClick={scrollTo("ateliers")}
+          href={isHome ? "#ateliers" : "/#ateliers"}
+          onClick={isHome ? scrollTo("ateliers") : undefined}
           className="font-sans text-xs tracking-[0.15em] bg-[#4B2E2B] text-[#F5E6D3] px-5 py-2.5 rounded hover:bg-[#C89B3C] hover:text-[#0a0605] transition-all duration-300"
         >
           Réserver

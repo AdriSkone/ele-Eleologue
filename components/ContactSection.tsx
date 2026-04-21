@@ -192,6 +192,7 @@ export default function ContactSection() {
                       <select
                         value={data.atelier}
                         onChange={set("atelier")}
+                        suppressHydrationWarning
                         className={`${inputClass} appearance-none pr-10`}
                       >
                         <option value="" disabled>Sélectionner un atelier</option>
