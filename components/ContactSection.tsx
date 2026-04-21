@@ -149,6 +149,7 @@ export default function ContactSection() {
                       value={data.nom}
                       onChange={set("nom")}
                       className={inputClass}
+                      suppressHydrationWarning
                     />
                   </div>
                   <div>
@@ -159,6 +160,7 @@ export default function ContactSection() {
                       value={data.email}
                       onChange={set("email")}
                       className={inputClass}
+                      suppressHydrationWarning
                     />
                   </div>
                   <div className="flex justify-end mt-2">
@@ -211,6 +213,7 @@ export default function ContactSection() {
                       rows={5}
                       placeholder="Décrivez votre demande, le nombre de participants, la date souhaitée..."
                       value={data.message}
+                      suppressHydrationWarning
                       onChange={set("message")}
                       className={`${inputClass} resize-none`}
                     />
